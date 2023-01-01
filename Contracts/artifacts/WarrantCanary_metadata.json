@@ -49,6 +49,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "getAliveCanaries",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint8",
@@ -62,6 +75,19 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getDeadCanaries",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
 					}
 				],
 				"stateMutability": "view",
@@ -135,11 +161,11 @@
 	},
 	"sources": {
 		"Contracts/WarrantCanary.sol": {
-			"keccak256": "0x2727712ad2a35e1f45464a3ed9d5419548cc654943a9f2e0b6a305c901680d48",
+			"keccak256": "0xd93cbb7bb08947ef457aa29190a355e270afcd1367a1fe1deecf6f19a1d11048",
 			"license": "MIT-0",
 			"urls": [
-				"bzz-raw://6539543ca24c4622d6b7a657acdbc8bb46e5ca5299796b91971478f557154346",
-				"dweb:/ipfs/QmaNKGbMJU4eAQ9fSPPgcZQ2vUCwbDYcGxCnaC4TM7DbZE"
+				"bzz-raw://671b8dacb556716b7ed8a8c6f543a96788f9ebe0e5167c0a0659dba354c71581",
+				"dweb:/ipfs/QmQ4nBkig3wvwtgRC1Rmcxu7R5YF6P5CzH8NxF9NG4zsf3"
 			]
 		}
 	},

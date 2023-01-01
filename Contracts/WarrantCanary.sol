@@ -73,6 +73,36 @@ contract WarrantCanary {
         return owner;
     }
 
+    // Return array of dead canaries
+    function getDeadCanaries() view public returns (string[] memory) {
+        string[] memory deadCanaries = new string[](0);
+        uint256 deadCanaryCount = 0;
+
+        for (uint8 i = 0; i < 10; ++i) {
+            if (!status[i].alive) {
+                deadCanaries[deadCanaryCount] = status[i].name;
+                ++deadCanaryCount;
+            }
+        }
+
+        return deadCanaries;
+    }
+
+    // Return array of dead canaries
+    function getAliveCanaries() public view returns (string[] memory) {
+        string[] memory aliveCanaries = new string[](10);
+        uint256 aliveCanaryCount = 0;
+
+        for (uint8 i = 0; i < 10; ++i) {
+            if (status[i].alive) {
+                aliveCanaries[aliveCanaryCount] = status[i].name;
+                ++aliveCanaryCount;
+            }
+        }
+
+        return aliveCanaries;
+    }
+
     // Event to signal that the canary has died
     event RIP(uint8 indexed canaryID, string canaryName);
 
