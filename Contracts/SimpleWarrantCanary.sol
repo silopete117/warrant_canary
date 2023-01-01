@@ -1,5 +1,6 @@
 pragma solidity ^0.8.7;
 
+// SPDX-License-Identifier: MIT-0
 // Description: warrant canary standard implemented in an ethereum contract.
 // Credit: https://eips.ethereum.org/EIPS/eip-801#methods
 // Credit: https://github.com/canarytail/standard
@@ -12,7 +13,7 @@ contract WarrantCanary {
     uint256 private blockOfDeath;
 
     // Constructor to initialize the contract with the canary alive
-    constructor() public {
+    constructor() {
         alive = true;
     }
 
