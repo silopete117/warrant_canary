@@ -1,6 +1,9 @@
 pragma solidity ^0.8.7; 
 
 // SPDX-License-Identifier: MIT-0
+// Description: warrant canary standard implemented in an ethereum contract.
+// Credit: https://eips.ethereum.org/EIPS/eip-801#methods
+// Credit: https://github.com/canarytail/standard
 
 contract WarrantCanary {
     // Array of strings to store the names of the different canaries
@@ -23,12 +26,17 @@ contract WarrantCanary {
         bool alive;
         uint256 blockOfDeath;
     }
-      
+
+    // Define state variables
+    address private owner;
+
     // Create canary status mapping
     mapping (uint8 => canary) private status;
 
     // Constructor to initialize the contract with the canary status mapping
     constructor() {
+        owner = msg.sender;
+
         for(uint8 i = 0; i < 10; ++i) {
             canary memory c = canary(canaries[i], true, 0);
             status[i] = c;
@@ -37,7 +45,7 @@ contract WarrantCanary {
 
     // Update status mapping for killed canary
     function killCanary(uint8 canaryID) public {
-        require(msg.sender == address(this), "Only the contract deployer can call this function");
+        require(msg.sender == owner, "Only the contract deployer can call this function");
         require(canaryID < 10, "Invalid canary id");
         require(status[canaryID].alive, "Canary is already dead");
         status[canaryID].alive = false;
@@ -47,7 +55,7 @@ contract WarrantCanary {
       
     // Update status mapping for revived canary
     function reviveCanary(uint8 canaryID) public {
-        require(msg.sender == address(this), "Only the contract deployer can call this function");
+        require(msg.sender == owner, "Only the contract deployer can call this function");
         require(canaryID < 10, "Invalid canary id");
         require(!status[canaryID].alive, "Canary is already alive");
         status[canaryID].alive = true;
@@ -58,6 +66,11 @@ contract WarrantCanary {
     function getCanaryStatus(uint8 canaryID) view public returns (bool) {
         require(canaryID < 10, "Invalid canary id");
         return status[canaryID].alive;
+    }
+
+    // Return contract owner
+    function getOwner() view public returns (address) {
+        return owner;
     }
 
     // Event to signal that the canary has died

@@ -12,32 +12,51 @@
 			},
 			{
 				"anonymous": false,
-				"inputs": [],
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint8",
+						"name": "canaryID",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "canaryName",
+						"type": "string"
+					}
+				],
 				"name": "REVIVED",
 				"type": "event"
 			},
 			{
 				"anonymous": false,
-				"inputs": [],
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint8",
+						"name": "canaryID",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "canaryName",
+						"type": "string"
+					}
+				],
 				"name": "RIP",
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "getBlockOfDeath",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"internalType": "uint8",
+						"name": "canaryID",
+						"type": "uint8"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "isAlive",
+				"name": "getCanaryStatus",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -50,14 +69,39 @@
 			},
 			{
 				"inputs": [],
-				"name": "kill",
+				"name": "getOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "canaryID",
+						"type": "uint8"
+					}
+				],
+				"name": "killCanary",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "revive",
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "canaryID",
+						"type": "uint8"
+					}
+				],
+				"name": "reviveCanary",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -76,7 +120,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Contracts/SimpleWarrantCanary.sol": "WarrantCanary"
+			"Contracts/WarrantCanary.sol": "WarrantCanary"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -90,12 +134,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Contracts/SimpleWarrantCanary.sol": {
-			"keccak256": "0x368da2dc3f05725c180c7b674b0d8ba663d931a3e414136ca50e0f91ae9ee4b8",
+		"Contracts/WarrantCanary.sol": {
+			"keccak256": "0x2727712ad2a35e1f45464a3ed9d5419548cc654943a9f2e0b6a305c901680d48",
 			"license": "MIT-0",
 			"urls": [
-				"bzz-raw://2be2d77808b989fb2ce8e63a0233ac002d915393c43c2728c6b4fb0a1134faeb",
-				"dweb:/ipfs/QmfBjMgEz9o4NCtgPbhpAdVJ1tt426hSJAyTaE217QHeYD"
+				"bzz-raw://6539543ca24c4622d6b7a657acdbc8bb46e5ca5299796b91971478f557154346",
+				"dweb:/ipfs/QmaNKGbMJU4eAQ9fSPPgcZQ2vUCwbDYcGxCnaC4TM7DbZE"
 			]
 		}
 	},
