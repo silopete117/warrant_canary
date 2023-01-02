@@ -24,6 +24,12 @@
 						"internalType": "string",
 						"name": "canaryName",
 						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "blockNumber",
+						"type": "uint256"
 					}
 				],
 				"name": "REVIVED",
@@ -43,6 +49,12 @@
 						"internalType": "string",
 						"name": "canaryName",
 						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "blockNumber",
+						"type": "uint256"
 					}
 				],
 				"name": "RIP",
@@ -161,11 +173,11 @@
 	},
 	"sources": {
 		"Contracts/WarrantCanary.sol": {
-			"keccak256": "0x2e366506e44da64f0b3e5a81b70a1e26783f0464770e9d8fc3d160df119824f2",
+			"keccak256": "0xcb76c3bac92b4649f2a0306d60865f411e4e2ddaf076d665ec3a772b745bf408",
 			"license": "MIT-0",
 			"urls": [
-				"bzz-raw://27c9d242bea974fe89f3d2db4c5143d4428de30baa32509d95f470b4ffb05040",
-				"dweb:/ipfs/QmS7xum33m3vhBCNBxceSKqy2zdxeKWHk9tWiBt76MeJ1f"
+				"bzz-raw://cbec5ce1f095784418bcbf560d5f41800767f97f74a30a88d0406f4e65ac432a",
+				"dweb:/ipfs/QmSvN1Zfjwx4PMBs2LTkmeknyd5jDmN3QTbpTX1GKvNmSM"
 			]
 		}
 	},

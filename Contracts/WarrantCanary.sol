@@ -50,7 +50,7 @@ contract WarrantCanary {
         require(canaries[canaryID].alive, "Canary is already dead");
         canaries[canaryID].alive = false;
         canaries[canaryID].blockOfDeath = block.number;
-        emit RIP(canaryID, canaries[canaryID].name);
+        emit RIP(canaryID, canaries[canaryID].name, canaries[canaryID].blockOfDeath);
     }
       
     // Update status mapping for revived canary
@@ -59,7 +59,7 @@ contract WarrantCanary {
         require(canaryID < 10, "Invalid canary id");
         require(!canaries[canaryID].alive, "Canary is already alive");
         canaries[canaryID].alive = true;
-        emit REVIVED(canaryID, canaries[canaryID].name);
+        emit REVIVED(canaryID, canaries[canaryID].name, canaries[canaryID].blockOfDeath);
     }
 
     // Return canary status from a mapping
@@ -124,8 +124,8 @@ contract WarrantCanary {
     }
 
     // Event to signal that the canary has died
-    event RIP(uint8 indexed canaryID, string canaryName);
+    event RIP(uint8 indexed canaryID, string canaryName, uint256 indexed blockNumber);
 
     // Event to signal that the canary has been revived
-    event REVIVED(uint8 indexed canaryID, string canaryName);
+    event REVIVED(uint8 indexed canaryID, string canaryName, uint256 indexed blockNumber);
 }
