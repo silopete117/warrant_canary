@@ -7,7 +7,7 @@ pragma solidity ^0.8.7;
 
 contract WarrantCanary {
     // Array of strings to store the names of the different canaries
-    string[] private canaries = [
+    string[] private canaryNames = [
         "WAR", // Warrants
         "GAG", // Gag orders
         "SUBP", // Subpoenas
@@ -31,15 +31,15 @@ contract WarrantCanary {
     address private owner;
 
     // Create canary status mapping
-    mapping (uint8 => canary) private status;
+    mapping (uint8 => canary) private canaries;
 
     // Constructor to initialize the contract with the canary status mapping
     constructor() {
         owner = msg.sender;
 
         for(uint8 i = 0; i < 10; ++i) {
-            canary memory c = canary(canaries[i], true, 0);
-            status[i] = c;
+            canary memory c = canary(canaryNames[i], true, 0);
+            canaries[i] = c;
         }
     }
 
@@ -47,25 +47,25 @@ contract WarrantCanary {
     function killCanary(uint8 canaryID) public {
         require(msg.sender == owner, "Only the contract deployer can call this function");
         require(canaryID < 10, "Invalid canary id");
-        require(status[canaryID].alive, "Canary is already dead");
-        status[canaryID].alive = false;
-        status[canaryID].blockOfDeath = block.number;
-        emit RIP(canaryID, status[canaryID].name);
+        require(canaries[canaryID].alive, "Canary is already dead");
+        canaries[canaryID].alive = false;
+        canaries[canaryID].blockOfDeath = block.number;
+        emit RIP(canaryID, canaries[canaryID].name);
     }
       
     // Update status mapping for revived canary
     function reviveCanary(uint8 canaryID) public {
         require(msg.sender == owner, "Only the contract deployer can call this function");
         require(canaryID < 10, "Invalid canary id");
-        require(!status[canaryID].alive, "Canary is already alive");
-        status[canaryID].alive = true;
-        emit REVIVED(canaryID, status[canaryID].name);
+        require(!canaries[canaryID].alive, "Canary is already alive");
+        canaries[canaryID].alive = true;
+        emit REVIVED(canaryID, canaries[canaryID].name);
     }
 
     // Return canary status from a mapping
     function getCanaryStatus(uint8 canaryID) view public returns (bool) {
         require(canaryID < 10, "Invalid canary id");
-        return status[canaryID].alive;
+        return canaries[canaryID].alive;
     }
 
     // Return contract owner
@@ -74,33 +74,53 @@ contract WarrantCanary {
     }
 
     // Return array of dead canaries
-    function getDeadCanaries() view public returns (string[] memory) {
-        string[] memory deadCanaries = new string[](0);
-        uint256 deadCanaryCount = 0;
+    function getAliveCanaries() view public returns (string[] memory) {
+        string[] memory tmpCanaries = new string[](10);
+        uint8 count = 0;
 
         for (uint8 i = 0; i < 10; ++i) {
-            if (!status[i].alive) {
-                deadCanaries[deadCanaryCount] = status[i].name;
-                ++deadCanaryCount;
+            if (canaries[i].alive) {
+                tmpCanaries[i] = canaries[i].name;
+                ++count;
             }
         }
 
-        return deadCanaries;
+        string[] memory aliveCanaries = new string[](count);
+        count = 0;
+
+        for (uint8 i = 0; i < 10; ++i) {
+            if (bytes(tmpCanaries[i]).length > 0) {
+                aliveCanaries[count] = tmpCanaries[i];
+                ++count;
+            }
+        }
+    
+        return aliveCanaries;
     }
 
     // Return array of dead canaries
-    function getAliveCanaries() public view returns (string[] memory) {
-        string[] memory aliveCanaries = new string[](10);
-        uint256 aliveCanaryCount = 0;
+    function getDeadCanaries() view public returns (string[] memory) {
+        string[] memory tmpCanaries = new string[](10);
+        uint8 count = 0;
 
         for (uint8 i = 0; i < 10; ++i) {
-            if (status[i].alive) {
-                aliveCanaries[aliveCanaryCount] = status[i].name;
-                ++aliveCanaryCount;
+            if (!canaries[i].alive) {
+                tmpCanaries[i] = canaries[i].name;
+                ++count;
             }
         }
 
-        return aliveCanaries;
+        string[] memory deadCanaries = new string[](count);
+        count = 0;
+
+        for (uint8 i = 0; i < 10; ++i) {
+            if (bytes(tmpCanaries[i]).length > 0) {
+                deadCanaries[count] = tmpCanaries[i];
+                ++count;
+            }
+        }
+    
+        return deadCanaries;
     }
 
     // Event to signal that the canary has died

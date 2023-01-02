@@ -161,11 +161,11 @@
 	},
 	"sources": {
 		"Contracts/WarrantCanary.sol": {
-			"keccak256": "0xd93cbb7bb08947ef457aa29190a355e270afcd1367a1fe1deecf6f19a1d11048",
+			"keccak256": "0x2e366506e44da64f0b3e5a81b70a1e26783f0464770e9d8fc3d160df119824f2",
 			"license": "MIT-0",
 			"urls": [
-				"bzz-raw://671b8dacb556716b7ed8a8c6f543a96788f9ebe0e5167c0a0659dba354c71581",
-				"dweb:/ipfs/QmQ4nBkig3wvwtgRC1Rmcxu7R5YF6P5CzH8NxF9NG4zsf3"
+				"bzz-raw://27c9d242bea974fe89f3d2db4c5143d4428de30baa32509d95f470b4ffb05040",
+				"dweb:/ipfs/QmS7xum33m3vhBCNBxceSKqy2zdxeKWHk9tWiBt76MeJ1f"
 			]
 		}
 	},
